@@ -1,6 +1,3 @@
-from struct import iter_unpack
-
-
 def dfs(left, right, used_mask):
     if left < right:
         return 0
