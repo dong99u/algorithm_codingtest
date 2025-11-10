@@ -4,7 +4,7 @@
 # input = sys.stdin.readline
 #
 # n = int(input())
-# A = list(map(int, input().split()))
+# A = list(maps(int, input().split()))
 #
 # s = deque()
 # answers = [0] * n
