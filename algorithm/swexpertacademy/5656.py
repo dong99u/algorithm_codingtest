@@ -15,23 +15,19 @@ def boom(grid, x, y):
     if k == 0:
         return 0
 
-    # 중심 먼저 제거!
     grid[x][y] = 0
     cnt = 1
 
     if k == 1:
         return cnt
 
-    for i in range(x - k + 1, x + k):
-        if i == x:
-            continue
-        if in_range(i, y):
-            cnt += boom(grid, i, y)
-    for j in range(y - k + 1, y + k):
-        if j == y:
-            continue
-        if in_range(x, j):
-            cnt += boom(grid, x, j)
+    for dx, dy in zip(dxs, dys):
+        for dist in range(1, k):
+            nx = x + dx * dist
+            ny = y + dy * dist
+
+            if in_range(nx, ny) and grid[nx][ny] != 0:
+                cnt += boom(grid, nx, ny)
 
     return cnt
 
@@ -73,6 +69,9 @@ def dfs(grid, cnt, destroyed_cnt):
         dfs(temp_grid, cnt + 1, destroyed_cnt + destroyed)
 
 t = int(input())
+
+dxs = [-1, 1, 0, 0]
+dys = [0, 0, -1, 1]
 
 for test_case in range(1, t + 1):
     n, w, h = map(int, input().split())
